@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinInterviewTask.Views.MasterViewPageMaster"
+              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:prism="http://prismlibrary.com"
+             Title="News Headlines">
+    <Grid>
+        <ActivityIndicator IsVisible="{OnIdiom Default=false,Phone=true}"  IsRunning="{Binding ShowLoadingIndicator}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <StackLayout>
+            <SearchBar Text="{Binding SearchTopic}" SearchCommand="{Binding SearchCommand}"/>
+        <ListView x:Name="MenuItemsListView" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding CountryList}">
+            <ListView.Behaviors>
+               <prism:EventToCommandBehavior EventName="ItemTapped"
+                                          Command="{Binding ItemTappedCommand}"
+                                           EventArgsParameterPath="Item"/>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Spacing="0">
+                        <Grid  ColumnDefinitions="Auto,*" Padding="10,10,10,0">
+                      <ffimageloadingsvg:SvgCachedImage Grid.Column="0" WidthRequest="50" HeightRequest="50"
+            DownsampleToViewSize="true" Source="{Binding flag}">
+        </ffimageloadingsvg:SvgCachedImage>
+          <StackLayout Grid.Column="1" Padding="15,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label VerticalOptions="FillAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding title}" FontAttributes="Bold" FontSize="20" />
+              <StackLayout Orientation="Horizontal" Margin="0,5,0,0" VerticalOptions="End">
+              <Label HorizontalOptions="Start">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="author: " FontSize="Subtitle" FontAttributes="Bold"/>
+                                    <Span Text="{Binding author}" FontSize="Subtitle"/>
+                                    
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                  <Label HorizontalOptions="Start">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Number of comments: " FontSize="Subtitle" FontAttributes="Bold"/>
+                                    <Span Text="{Binding num_comments}" FontSize="Subtitle"/>
+                                    
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                  </StackLayout>
+                        </StackLayout>
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="Silver"/>
+                            </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</Grid>
+</ContentPage>

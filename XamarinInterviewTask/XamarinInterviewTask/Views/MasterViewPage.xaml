@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="XamarinInterviewTask.Views.MasterViewPage"
+                  NavigationPage.HasNavigationBar="False"
+                  xmlns:pages="clr-namespace:XamarinInterviewTask.Views">
+     <MasterDetailPage.MasterBehavior>
+        <OnIdiom x:TypeArguments="MasterBehavior">
+            <OnIdiom.Phone>Popover </OnIdiom.Phone>
+            <OnIdiom.Tablet>Split</OnIdiom.Tablet>
+        </OnIdiom>
+    </MasterDetailPage.MasterBehavior>
+    <MasterDetailPage.Master>
+        <pages:MasterViewPageMaster x:Name="MasterPage" />
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <pages:MasterViewPageDetail />
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>
